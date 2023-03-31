@@ -7,6 +7,7 @@
 
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
+import { useTheme } from '@rneui/themed';
 
 const styles = StyleSheet.create({
   center:{
@@ -14,10 +15,19 @@ const styles = StyleSheet.create({
   },
   fontBold:{
     fontWeight:"bold",
+  },
+  modeColor:{
+    backgroundColor:"red"
+
   }
 
 
 })
+type colors={
+  primary:string
+  
+}
+
 type GreetingProps = {
   name:string;
 
@@ -33,10 +43,15 @@ const Greeting = (props:GreetingProps)=>{
   );
 
 }
+import { ThemeProvider, Button, createTheme } from '@rneui/themed';
 const App = () => {
+  const { theme, updateTheme } = useTheme();
+
   return (
-    <View>
+    <View style={styles.modeColor}>
       <Greeting name='vijay rajput'/>
+      <Button onPress={() => updateTheme({ lightColors: { primary: 'red' } })} />
+
     </View>
   )
 }
